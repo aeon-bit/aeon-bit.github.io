@@ -6,14 +6,50 @@ https://templatemo.com/tm-536-dream-pulse
 
 */
 
-body {
+/* body {
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: 18px;
   font-weight: 400;
   overflow-x: hidden;
   color: #707172;
   background-color: #666;
-}
+} */
+html,body {
+        margin:0;
+        padding:0;
+        overflow-x:hidden;
+    }
+
+    .maintenance {
+        /* The image used */
+        position: fixed;
+        background:
+            url("../assets/images/maintenance.svg"),
+            url("../assets/images/left.svg"),
+            url("../assets/images/right.svg"),
+            url("../assets/images/oops.svg");
+
+        /* Full height */
+        height: 100%;
+        width: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: right, bottom left, top right, 25% 50%;
+        background-repeat: no-repeat;
+        background-size: 60%, 60%, 60%, 30%;
+    }
+
+    /* Bottom right text */
+    .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: 18px;
+        font-weight: 200;
+        color: #666;
+        margin-bottom: 12px;
+    }
 
 p {
   line-height: 2;
