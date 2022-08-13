@@ -24,10 +24,10 @@ html,body {
         /* The image used */
         position: fixed;
         background:
-            url("../assets/images/maintenance.svg"),
-            url("../assets/images/left.svg"),
-            url("../assets/images/right.svg"),
-            url("../assets/images/oops.svg");
+            url("../img/maintenance.svg"),
+            url("../img/left.svg"),
+            url("../img/right.svg"),
+            url("../img/oops.svg");
 
         /* Full height */
         height: 100%;
