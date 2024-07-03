@@ -1,6 +1,6 @@
 {
-    "name": "local_recap_panwas",
-    "short_name": "local_recap_panwas",
+    "name": "aeonbit_github_web",
+    "short_name": "aeonbit_github_web",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
