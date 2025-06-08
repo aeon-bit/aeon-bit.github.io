@@ -1,6 +1,6 @@
 {
-    "name": "aeonbit_github_web",
-    "short_name": "aeonbit_github_web",
+    "name": "portfolio_web_aeonbit",
+    "short_name": "portfolio_web_aeonbit",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
