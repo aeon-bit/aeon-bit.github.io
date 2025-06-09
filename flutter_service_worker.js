@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "01fd92df5f125c79f475af6bb5028759",
-"assets/AssetManifest.bin.json": "7fc4f8c7d2536d84f44238cbeb3c530e",
-"assets/AssetManifest.json": "33d5d6909432205d1fd3ffae2cc36e27",
+const RESOURCES = {"assets/AssetManifest.bin": "81128c5f3814fcaee732f0802c2a1ccc",
+"assets/AssetManifest.bin.json": "152d6be953e3310ed368a47123871358",
+"assets/AssetManifest.json": "51e5d16556bc50d469de740310c005fe",
 "assets/assets/images/about_me_square.jpg": "80062b7aeea8f3babceb8b2590a758ca",
 "assets/assets/images/amikom.png": "f17081e72644564afaa678381c7bf221",
 "assets/assets/images/projects/juragankucek.png": "78f9da1ff5730f3467a1a2d95ede534f",
@@ -18,6 +18,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "01fd92df5f125c79f475af6bb5028759
 "assets/assets/lottie/exp_original.json": "f50de63dae898604fba67aac56bc392f",
 "assets/assets/lottie/learn_anim_fixed.json": "6bf2be59cb79c54f9a37495aceb01d1c",
 "assets/assets/lottie/lottie_splash_loading.json": "731e1f93c663e7738c4e57c1d8010a76",
+"assets/assets/lottie/r_banner.json": "9af3e6d49fafd8a7e96468f9f24f037f",
 "assets/assets/lottie/waving_hand.json": "d3eb4b610b7d45dc958141aa965f6de5",
 "assets/assets/svg/ab_purple.svg": "32246157e507c98baa0c452043765f53",
 "assets/assets/svg/ab_text.svg": "468dc4343959e0c42bda075ce1f56f7e",
@@ -61,9 +62,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "01fd92df5f125c79f475af6bb5028759
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "53652a635d36a105a7b9b3cd0ed73a56",
-"/": "53652a635d36a105a7b9b3cd0ed73a56",
-"main.dart.js": "c0678845322ddd1225c82a7561442e11",
+"index.html": "bcd45ee2bbc482f84668499a83b48a58",
+"/": "bcd45ee2bbc482f84668499a83b48a58",
+"main.dart.js": "96b14bb1417f0f753e7fab6ad3195d48",
 "manifest.json": "8780e59b100fadfd1ebd1ddac0eb1784",
 "version.json": "4d6ae595bb4b7bb0449f1b1f94aae288"};
 // The application shell files that are downloaded before a service worker can
