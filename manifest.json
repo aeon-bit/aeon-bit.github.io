@@ -1,6 +1,6 @@
 {
-    "name": "portfolio_web_aeonbit",
-    "short_name": "portfolio_web_aeonbit",
+    "name": "aeonbit_tech",
+    "short_name": "aeonbit_tech",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
