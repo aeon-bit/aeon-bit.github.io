@@ -1,59 +1,808 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iwan Susanto — Mobile Application Developer</title>
+<meta name="description" content="Portofolio Iwan Susanto, Mobile Application Developer dengan 5+ tahun pengalaman merilis aplikasi Flutter/Dart ke Google Play, didukung Next.js dan Laravel di sisi web.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<style>
+  :root{
+    --bg-void:#0A0E14;
+    --bg-panel:#0F141C;
+    --bg-elevated:#141B26;
+    --bg-elevated-2:#1A2230;
+    --border:#212A3A;
+    --border-soft:#1A212D;
+    --text-primary:#E8EAF0;
+    --text-secondary:#8D96AC;
+    --text-dim:#525C71;
+    --accent-cyan:#63E6DD;
+    --accent-cyan-dim:rgba(99,230,221,.12);
+    --accent-amber:#F2B441;
+    --accent-amber-dim:rgba(242,180,65,.12);
+    --accent-violet:#A88CFA;
+    --accent-violet-dim:rgba(168,140,250,.12);
+    --accent-rose:#F97583;
+    --font-display:'Space Grotesk',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --radius-s:6px;
+    --radius-m:12px;
+    --radius-l:20px;
+    --ease:cubic-bezier(.16,.8,.24,1);
+    --container:1120px;
+  }
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-void);
+    color:var(--text-primary);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-position:center top;
+  }
+  body::before{
+    content:'';
+    position:fixed;inset:0;
+    background:radial-gradient(ellipse 900px 600px at 50% -10%, rgba(99,230,221,.07), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+  ::selection{background:var(--accent-cyan);color:var(--bg-void);}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+  button{font:inherit;cursor:pointer;}
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+  .container{max-width:var(--container);margin:0 auto;padding:0 24px;}
+  .mono{font-family:var(--font-mono);}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:.8rem;
+    color:var(--accent-cyan);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+    letter-spacing:.02em;
+  }
+  .eyebrow::before{content:'';width:16px;height:1px;background:var(--accent-cyan);opacity:.6;}
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
+  h1,h2,h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;line-height:1.15;}
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  /* ===== Focus visibility ===== */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--accent-cyan);
+    outline-offset:3px;
+    border-radius:4px;
+  }
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="aeonbit_tech">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  /* ===== Reduced motion ===== */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
+  }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  /* ===== Tab bar nav ===== */
+  .tabbar{
+    position:sticky;top:0;z-index:100;
+    background:rgba(10,14,20,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .tabbar-inner{
+    max-width:var(--container);
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    gap:2px;
+    padding:0 16px;
+    height:52px;
+  }
+  .traffic{display:flex;gap:7px;padding-right:16px;margin-right:14px;border-right:1px solid var(--border);flex-shrink:0;}
+  .traffic span{width:10px;height:10px;border-radius:50%;display:block;}
+  .traffic span:nth-child(1){background:#F97583;}
+  .traffic span:nth-child(2){background:#F2B441;}
+  .traffic span:nth-child(3){background:#63E6DD;}
 
-  <title>aeonbit_tech</title>
-  <link rel="manifest" href="manifest.json">
+  .tabs{
+    display:flex;
+    gap:2px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    flex:1;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{
+    font-family:var(--font-mono);
+    font-size:.78rem;
+    color:var(--text-dim);
+    white-space:nowrap;
+    padding:0 14px;
+    height:52px;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    border-bottom:2px solid transparent;
+    transition:color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+    flex-shrink:0;
+  }
+  .tab .dot{width:6px;height:6px;border-radius:50%;background:var(--text-dim);flex-shrink:0;}
+  .tab:hover{color:var(--text-secondary);background:var(--bg-panel);}
+  .tab.active{color:var(--text-primary);border-bottom-color:var(--accent-cyan);background:var(--bg-panel);}
+  .tab.active .dot{background:var(--accent-cyan);}
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "1106651630";
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  /* ===== Line-number rail (desktop only) ===== */
+  .rail{
+    position:fixed;
+    left:28px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:22px;
+  }
+  .rail::before{
+    content:'';
+    position:absolute;
+    top:-30px;bottom:-30px;left:50%;
+    width:1px;
+    background:var(--border);
+    transform:translateX(-50%);
+    z-index:-1;
+  }
+  .rail-num{
+    font-family:var(--font-mono);
+    font-size:.7rem;
+    color:var(--text-dim);
+    width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:var(--bg-void);
+    border:1px solid transparent;
+    transition:color .25s var(--ease), border-color .25s var(--ease);
+  }
+  .rail-num.active{color:var(--accent-cyan);border-color:var(--accent-cyan);}
+  @media (max-width:1180px){.rail{display:none;}}
+
+  /* ===== Section base ===== */
+  .section{
+    position:relative;
+    z-index:1;
+    padding:120px 0;
+    border-bottom:1px solid var(--border-soft);
+  }
+  @media (max-width:768px){.section{padding:80px 0;}}
+
+  /* ===== Reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  .reveal-stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease), transform .6s var(--ease);}
+  .reveal-stagger.is-visible > *{opacity:1;transform:translateY(0);}
+  .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.12s;}
+  .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.19s;}
+  .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.26s;}
+  .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.33s;}
+  .reveal-stagger.is-visible > *:nth-child(6){transition-delay:.4s;}
+
+  /* ===================== HERO ===================== */
+  .hero{padding-top:88px;padding-bottom:110px;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+    align-items:center;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .editor-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius-m);
+    overflow:hidden;
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.6);
+  }
+  .editor-card-head{
+    display:flex;align-items:center;gap:8px;
+    padding:12px 16px;
+    border-bottom:1px solid var(--border);
+    background:var(--bg-elevated);
+  }
+  .editor-card-head span.hdot{width:9px;height:9px;border-radius:50%;}
+  .editor-card-head span.hdot:nth-child(1){background:#F97583;}
+  .editor-card-head span.hdot:nth-child(2){background:#F2B441;}
+  .editor-card-head span.hdot:nth-child(3){background:#63E6DD;}
+  .editor-card-head .filename{margin-left:8px;font-family:var(--font-mono);font-size:.78rem;color:var(--text-dim);}
+  .editor-card-body{
+    padding:24px 22px;
+    font-family:var(--font-mono);
+    font-size:.92rem;
+    line-height:1.9;
+  }
+  .code-line{display:flex;gap:18px;white-space:pre;}
+  .code-line .ln{color:var(--text-dim);width:16px;flex-shrink:0;user-select:none;text-align:right;}
+  .code-line .code{color:var(--text-secondary);}
+  .code-line .code .kw{color:var(--accent-violet);}
+  .code-line .code .str{color:var(--accent-amber);}
+  .code-line .code .prop{color:var(--accent-cyan);}
+  .caret{display:inline-block;width:7px;height:1.1em;background:var(--accent-cyan);vertical-align:text-bottom;animation:blink 1s steps(1) infinite;margin-left:2px;}
+  @keyframes blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+
+  .hero-text{text-align:center;}
+  .hero-text h1{
+    font-size:clamp(1.9rem, 4.6vw, 3.1rem);
+    margin-bottom:20px;
+  }
+  .hero-text p{
+    color:var(--text-secondary);
+    font-size:1.05rem;
+    max-width:560px;
+    margin:0 auto 30px;
+  }
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:26px;}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:.85rem;
+    padding:13px 24px;
+    border-radius:var(--radius-s);
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease), box-shadow .2s var(--ease);
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--accent-cyan);color:var(--bg-void);font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(99,230,221,.5);}
+  .btn-ghost{border-color:var(--border);color:var(--text-primary);}
+  .btn-ghost:hover{border-color:var(--accent-cyan);color:var(--accent-cyan);transform:translateY(-2px);}
+  .btn svg{width:15px;height:15px;}
+
+  .status-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:.78rem;color:var(--text-secondary);
+    border:1px solid var(--border);
+    padding:7px 14px;border-radius:100px;
+    background:var(--bg-panel);
+  }
+  .status-tag .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent-cyan);position:relative;}
+  .status-tag .pulse::after{
+    content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent-cyan);
+    animation:pulse 2s var(--ease) infinite;
+  }
+  @keyframes pulse{0%{opacity:.8;transform:scale(.6);}100%{opacity:0;transform:scale(2.2);}}
+
+  @media (min-width:860px){
+    .hero-grid{grid-template-columns:.95fr 1.05fr;gap:56px;text-align:left;}
+    .hero-text{text-align:left;}
+    .hero-text p{margin:0 0 30px;}
+    .hero-cta{justify-content:flex-start;}
+  }
+
+  /* ===================== ABOUT ===================== */
+  .about-grid{display:grid;grid-template-columns:1fr;gap:56px;align-items:start;}
+  @media (min-width:900px){.about-grid{grid-template-columns:1.2fr .8fr;}}
+  .about-heading{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:20px;}
+  .about-copy p{color:var(--text-secondary);margin-bottom:16px;max-width:56ch;}
+  .about-copy strong{color:var(--text-primary);font-weight:600;}
+
+  .terminal-stats{
+    background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-m);overflow:hidden;
+  }
+  .terminal-stats .editor-card-head{background:var(--bg-elevated);}
+  .terminal-stats-body{padding:22px;font-family:var(--font-mono);font-size:.85rem;}
+  .terminal-stats-body .prompt{color:var(--accent-cyan);margin-bottom:14px;}
+  .stat-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px dashed var(--border-soft);color:var(--text-secondary);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-row b{color:var(--text-primary);font-family:var(--font-display);font-size:1.1rem;font-weight:600;}
+
+  /* ===================== STACK ===================== */
+  .stack-heading{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:44px;max-width:600px;}
+  .stack-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media (min-width:700px){.stack-grid{grid-template-columns:1fr 1fr;}}
+  .stack-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius-m);
+    padding:26px;
+    transition:border-color .25s var(--ease), transform .25s var(--ease);
+  }
+  .stack-card:hover{border-color:var(--accent-cyan);transform:translateY(-4px);}
+  .stack-card-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .stack-icon{
+    width:38px;height:38px;border-radius:var(--radius-s);
+    display:flex;align-items:center;justify-content:center;
+    background:var(--accent-cyan-dim);color:var(--accent-cyan);flex-shrink:0;
+  }
+  .stack-card:nth-child(2) .stack-icon{background:var(--accent-amber-dim);color:var(--accent-amber);}
+  .stack-card:nth-child(3) .stack-icon{background:var(--accent-violet-dim);color:var(--accent-violet);}
+  .stack-card:nth-child(4) .stack-icon{background:rgba(249,117,131,.12);color:var(--accent-rose);}
+  .stack-icon svg{width:19px;height:19px;}
+  .stack-card-head h3{font-size:1.02rem;font-weight:600;}
+  .stack-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .stack-tag{
+    font-family:var(--font-mono);font-size:.76rem;color:var(--text-secondary);
+    border:1px solid var(--border-soft);padding:5px 10px;border-radius:100px;
+  }
+
+  /* ===================== WORK ===================== */
+  .work-heading{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:44px;max-width:600px;}
+  .work-grid{display:grid;grid-template-columns:1fr;gap:20px;}
+  @media (min-width:760px){.work-grid{grid-template-columns:1fr 1fr;}}
+  .project-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border);
+    border-radius:var(--radius-m);
+    padding:26px;
+    display:flex;flex-direction:column;gap:16px;
+    transition:border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+    position:relative;
+    overflow:hidden;
+  }
+  .project-card::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(360px 200px at var(--mx,50%) var(--my,0%), rgba(99,230,221,.08), transparent 70%);
+    opacity:0;transition:opacity .3s var(--ease);pointer-events:none;
+  }
+  .project-card:hover::before{opacity:1;}
+  .project-card:hover{border-color:var(--accent-cyan);transform:translateY(-5px);box-shadow:0 24px 50px -30px rgba(0,0,0,.7);}
+  .project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .project-top .folder{display:flex;align-items:center;gap:10px;color:var(--text-dim);}
+  .project-top .folder svg{width:17px;height:17px;color:var(--accent-cyan);}
+  .project-links{display:flex;gap:8px;}
+  .project-links a{
+    width:32px;height:32px;border-radius:var(--radius-s);border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;color:var(--text-secondary);
+    transition:border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+  }
+  .project-links a:hover{border-color:var(--accent-cyan);color:var(--accent-cyan);transform:translateY(-2px);}
+  .project-links a svg{width:14px;height:14px;}
+  .project-card h3{font-size:1.18rem;font-weight:600;}
+  .project-card p{color:var(--text-secondary);font-size:.92rem;max-width:44ch;}
+  .project-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:6px;}
+  .project-tags span{
+    font-family:var(--font-mono);font-size:.72rem;color:var(--accent-cyan);
+    background:var(--accent-cyan-dim);padding:4px 9px;border-radius:100px;
+  }
+
+  /* ===================== EXPERIENCE ===================== */
+  .exp-heading{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:44px;max-width:600px;}
+  .log{position:relative;padding-left:26px;}
+  .log::before{content:'';position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--border);}
+  .log-item{position:relative;padding-bottom:38px;}
+  .log-item:last-child{padding-bottom:0;}
+  .log-item::before{
+    content:'';position:absolute;left:-26px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg-void);border:2px solid var(--accent-cyan);
+  }
+  .log-item.past::before{border-color:var(--text-dim);}
+  .log-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:8px;}
+  .log-meta .period{font-family:var(--font-mono);font-size:.76rem;color:var(--accent-cyan);background:var(--accent-cyan-dim);padding:3px 10px;border-radius:100px;}
+  .log-item h3{font-size:1.12rem;font-weight:600;}
+  .log-item .company{color:var(--text-dim);font-family:var(--font-mono);font-size:.82rem;}
+  .log-item p{color:var(--text-secondary);margin-top:8px;max-width:60ch;font-size:.95rem;}
+
+  /* ===================== CONTACT ===================== */
+  .contact{text-align:center;}
+  .contact-inner{max-width:600px;margin:0 auto;}
+  .contact-heading{font-size:clamp(1.8rem,4.4vw,2.8rem);margin-bottom:16px;}
+  .contact-prompt{font-family:var(--font-mono);color:var(--text-dim);font-size:.9rem;margin-bottom:34px;}
+  .contact-prompt .accent{color:var(--accent-cyan);}
+  .email-btn{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--font-mono);font-size:1rem;
+    background:var(--bg-panel);border:1px solid var(--border);
+    padding:16px 26px;border-radius:var(--radius-m);
+    margin-bottom:34px;
+    transition:border-color .25s var(--ease), transform .25s var(--ease);
+  }
+  .email-btn:hover{border-color:var(--accent-cyan);transform:translateY(-3px);}
+  .email-btn svg{width:18px;height:18px;color:var(--accent-cyan);}
+  .social-row{display:flex;gap:14px;justify-content:center;}
+  .social-row a{
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;color:var(--text-secondary);
+    transition:border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+  }
+  .social-row a:hover{border-color:var(--accent-cyan);color:var(--accent-cyan);transform:translateY(-3px);}
+  .social-row a svg{width:18px;height:18px;}
+
+  footer{padding:34px 0;text-align:center;}
+  footer p{font-family:var(--font-mono);font-size:.76rem;color:var(--text-dim);}
+
+  @media (max-width:520px){
+    .editor-card-body{font-size:.78rem;padding:20px 16px;}
+    .code-line{gap:12px;}
+  }
+</style>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
+
+<nav class="tabbar" aria-label="Navigasi bagian">
+  <div class="tabbar-inner">
+    <div class="traffic"><span></span><span></span><span></span></div>
+    <div class="tabs" id="tabs">
+      <a href="#hero" class="tab active" data-target="hero"><span class="dot"></span>hero.tsx</a>
+      <a href="#about" class="tab" data-target="about"><span class="dot"></span>about.md</a>
+      <a href="#stack" class="tab" data-target="stack"><span class="dot"></span>stack.json</a>
+      <a href="#work" class="tab" data-target="work"><span class="dot"></span>work/</a>
+      <a href="#experience" class="tab" data-target="experience"><span class="dot"></span>log.txt</a>
+      <a href="#contact" class="tab" data-target="contact"><span class="dot"></span>contact.sh</a>
+    </div>
+  </div>
+</nav>
+
+<div class="rail" id="rail" aria-hidden="true">
+  <span class="rail-num active" data-target="hero">01</span>
+  <span class="rail-num" data-target="about">02</span>
+  <span class="rail-num" data-target="stack">03</span>
+  <span class="rail-num" data-target="work">04</span>
+  <span class="rail-num" data-target="experience">05</span>
+  <span class="rail-num" data-target="contact">06</span>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="section hero" id="hero">
+    <div class="container hero-grid">
+      <div class="editor-card">
+        <div class="editor-card-head">
+          <span class="hdot"></span><span class="hdot"></span><span class="hdot"></span>
+          <span class="filename">developer.dart</span>
+        </div>
+        <div class="editor-card-body" id="typewriter"></div>
+      </div>
+
+      <div class="hero-text">
+        <h1>Membangun aplikasi mobile yang sampai ke Play Store — dan sisi <span style="color:var(--accent-cyan)">web</span> di baliknya.</h1>
+        <p>Mobile Application Developer dengan 5+ tahun pengalaman membangun aplikasi Flutter/Dart secara end-to-end — mulai dari implementasi UI/UX dan integrasi REST API, hingga rilis produksi di Google Play, didukung Next.js dan Laravel di sisi web.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">Lihat Karya <i data-lucide="arrow-right"></i></a>
+          <a href="#contact" class="btn btn-ghost">Hubungi Saya <i data-lucide="mail"></i></a>
+        </div>
+        <span class="status-tag"><span class="pulse"></span>Tersedia untuk proyek freelance &amp; full-time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <div class="eyebrow">// 02 — about.md</div>
+        <h2 class="about-heading">Halo, saya Iwan.</h2>
+        <div class="about-copy">
+          <p>Saya seorang Mobile Application Developer yang berbasis di Wonogiri, Jawa Tengah, dengan <strong>5+ tahun</strong> pengalaman merancang, membangun, dan merilis aplikasi Android menggunakan Flutter dan Dart — mulai dari wireframe pertama hingga rilis resmi di Play Store.</p>
+          <p>Pekerjaan saya mencakup seluruh siklus rilis: implementasi UI/UX, integrasi REST API, state management dengan GetX, hingga mengelola proses rilis end-to-end — build APK/AAB, versioning, store listing, sampai pemeliharaan pasca-rilis. Saya juga mengerjakan sisi web dan backend dengan Next.js, Laravel, dan Firebase ketika proyek membutuhkannya.</p>
+          <p>Saya lulusan S1 Informatika dari Universitas Amikom Yogyakarta, dan saya cukup peduli soal arsitektur yang bersih serta performa yang benar-benar terasa oleh pengguna.</p>
+        </div>
+      </div>
+
+      <div class="terminal-stats reveal">
+        <div class="editor-card-head">
+          <span class="hdot"></span><span class="hdot"></span><span class="hdot"></span>
+          <span class="filename">uptime.sh</span>
+        </div>
+        <div class="terminal-stats-body">
+          <div class="prompt">$ ./summary --stats</div>
+          <div class="stat-row"><span>Tahun pengalaman</span><b>5+</b></div>
+          <div class="stat-row"><span>Aplikasi dirilis ke Play Store</span><b>20+</b></div>
+          <div class="stat-row"><span>Tingkat keberhasilan rilis</span><b>95%</b></div>
+          <div class="stat-row"><span>Unduhan aplikasi terbaik</span><b>1.000+</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section" id="stack">
+    <div class="container">
+      <div class="eyebrow reveal">// 03 — stack.json</div>
+      <h2 class="stack-heading reveal">Tools yang saya pakai setiap hari.</h2>
+
+      <div class="stack-grid reveal-stagger">
+        <div class="stack-card">
+          <div class="stack-card-head">
+            <div class="stack-icon"><i data-lucide="smartphone"></i></div>
+            <h3>Mobile &amp; Frontend</h3>
+          </div>
+          <div class="stack-tags">
+            <span class="stack-tag">Flutter</span>
+            <span class="stack-tag">Dart</span>
+            <span class="stack-tag">GetX</span>
+            <span class="stack-tag">Next.js</span>
+            <span class="stack-tag">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-card-head">
+            <div class="stack-icon"><i data-lucide="server"></i></div>
+            <h3>Backend</h3>
+          </div>
+          <div class="stack-tags">
+            <span class="stack-tag">Laravel</span>
+            <span class="stack-tag">CodeIgniter</span>
+            <span class="stack-tag">PHP</span>
+            <span class="stack-tag">REST API</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-card-head">
+            <div class="stack-icon"><i data-lucide="database"></i></div>
+            <h3>Database</h3>
+          </div>
+          <div class="stack-tags">
+            <span class="stack-tag">MySQL</span>
+            <span class="stack-tag">Firestore (NoSQL)</span>
+          </div>
+        </div>
+
+        <div class="stack-card">
+          <div class="stack-card-head">
+            <div class="stack-icon"><i data-lucide="terminal"></i></div>
+            <h3>Tools &amp; DevOps</h3>
+          </div>
+          <div class="stack-tags">
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">Git</span>
+            <span class="stack-tag">Figma</span>
+            <span class="stack-tag">CI/CD Pipelines</span>
+            <span class="stack-tag">Google Play Console</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="eyebrow reveal">// 04 — work/</div>
+      <h2 class="work-heading reveal">Proyek pilihan.</h2>
+
+      <div class="work-grid reveal-stagger">
+        <div class="project-card" data-tilt>
+          <div class="project-top">
+            <div class="folder"><i data-lucide="folder"></i><span class="mono" style="font-size:.78rem;color:var(--text-dim)">teknisiq/</span></div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/search?q=TeknisiQ&c=apps" target="_blank" rel="noopener" aria-label="Cari di Google Play"><i data-lucide="arrow-up-right"></i></a>
+            </div>
+          </div>
+          <h3>TeknisiQ — Field Service App</h3>
+          <p>Aplikasi Android berbasis Flutter yang mendukung alur kerja operasional teknisi lapangan dan admin Quantum Partners, dengan sinkronisasi REST API yang dioptimalkan agar rilis tetap stabil.</p>
+          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>GetX</span><span>REST API</span></div>
+        </div>
+
+        <div class="project-card" data-tilt>
+          <div class="project-top">
+            <div class="folder"><i data-lucide="folder"></i><span class="mono" style="font-size:.78rem;color:var(--text-dim)">yulo/</span></div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/search?q=Yulo&c=apps" target="_blank" rel="noopener" aria-label="Cari di Google Play"><i data-lucide="arrow-up-right"></i></a>
+            </div>
+          </div>
+          <h3>Yulo — POS &amp; Laundry Ordering</h3>
+          <p>Aplikasi point-of-sale dan pemesanan laundry online dengan fitur pelacakan pesanan real-time, mencapai 500+ unduhan di Google Play.</p>
+          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>GetX</span><span>REST API</span></div>
+        </div>
+
+        <div class="project-card" data-tilt>
+          <div class="project-top">
+            <div class="folder"><i data-lucide="folder"></i><span class="mono" style="font-size:.78rem;color:var(--text-dim)">juragan-kucek/</span></div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/search?q=Juragan%20Kucek&c=apps" target="_blank" rel="noopener" aria-label="Cari di Google Play"><i data-lucide="arrow-up-right"></i></a>
+            </div>
+          </div>
+          <h3>Juragan Kucek — Merchant POS</h3>
+          <p>Arsitektur Flutter modular untuk aplikasi POS merchant, dibangun agar mudah dipelihara dan lebih cepat dikembangkan — 1.000+ unduhan di Google Play.</p>
+          <div class="project-tags"><span>Flutter</span><span>Dart</span><span>GetX</span><span>REST API</span></div>
+        </div>
+
+        <div class="project-card" data-tilt>
+          <div class="project-top">
+            <div class="folder"><i data-lucide="folder"></i><span class="mono" style="font-size:.78rem;color:var(--text-dim)">water-billing/</span></div>
+            <div class="project-links">
+              <a href="#" aria-label="Buka repositori"><i data-lucide="github"></i></a>
+            </div>
+          </div>
+          <h3>Water Billing Management System</h3>
+          <p>Sistem manajemen tagihan air lintas platform — Flutter untuk operasional lapangan di mobile, Next.js untuk panel admin web, dengan sinkronisasi real-time lewat Firebase Firestore.</p>
+          <div class="project-tags"><span>Flutter</span><span>Next.js</span><span>Firebase</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="eyebrow reveal">// 05 — experience.log</div>
+      <h2 class="exp-heading reveal">Perjalanan karier.</h2>
+
+      <div class="log reveal-stagger">
+        <div class="log-item">
+          <div class="log-meta"><span class="period">Nov 2025 — Jan 2026</span></div>
+          <h3>Mobile Application Developer</h3>
+          <div class="company">@ Quantum Indonesia · Freelance</div>
+          <p>Membangun TeknisiQ, aplikasi Android berbasis Flutter yang mendukung alur kerja teknisi lapangan dan admin Quantum Partners, serta bekerja sama dengan tim backend untuk mengoptimalkan sinkronisasi REST API demi rilis yang stabil dan bebas bug.</p>
+        </div>
+        <div class="log-item past">
+          <div class="log-meta"><span class="period">Feb 2024 — Feb 2025</span></div>
+          <h3>Mobile Application Developer</h3>
+          <div class="company">@ PT Yuk Laundry Online (Yulo) · Full-time</div>
+          <p>Membangun dan memelihara aplikasi Flutter untuk transaksi POS dan pemesanan laundry online (500+ unduhan), merilis fitur pelacakan pesanan real-time, dan mengelola penuh siklus rilis di Google Play.</p>
+        </div>
+        <div class="log-item past">
+          <div class="log-meta"><span class="period">Nov 2022 — Jun 2023</span></div>
+          <h3>Mobile Application Developer</h3>
+          <div class="company">@ RAMS Tech · Freelance</div>
+          <p>Merancang arsitektur Flutter modular untuk aplikasi POS merchant Juragan Kucek dan mengintegrasikan RESTful API untuk sinkronisasi multi-perangkat secara real-time, mencapai 1.000+ unduhan di Google Play.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="container contact-inner">
+      <div class="eyebrow reveal" style="justify-content:center;">// 06 — contact.sh</div>
+      <h2 class="contact-heading reveal">Mari bangun sesuatu bersama.</h2>
+      <p class="contact-prompt reveal"><span class="accent">$</span> open-inbox --to=iwan --status=<span class="accent">available</span></p>
+
+      <a href="mailto:isusanto.dev@gmail.com" class="email-btn reveal">
+        <i data-lucide="mail"></i> isusanto.dev@gmail.com
+      </a>
+
+      <div class="social-row reveal">
+        <a href="https://github.com/aeon-bit" target="_blank" rel="noopener" aria-label="GitHub"><i data-lucide="github"></i></a>
+        <a href="https://linkedin.com/in/aeonbit-tech" target="_blank" rel="noopener" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
+        <a href="https://instagram.com/aeonbit" target="_blank" rel="noopener" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>// dibangun dengan HTML, CSS &amp; vanilla JS · © 2026 Iwan Susanto</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  if (window.lucide) lucide.createIcons();
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Typewriter hero code block ---------- */
+  var lines = [
+    {code:"<span class='kw'>const</span> developer = {"},
+    {code:"&nbsp;&nbsp;name: <span class='str'>'Iwan Susanto'</span>,"},
+    {code:"&nbsp;&nbsp;<span class='prop'>role</span>: <span class='str'>'Mobile Application Developer'</span>,"},
+    {code:"&nbsp;&nbsp;<span class='prop'>base</span>: <span class='str'>'Wonogiri, ID'</span>,"},
+    {code:"&nbsp;&nbsp;<span class='prop'>stack</span>: [<span class='str'>'Flutter'</span>, <span class='str'>'Dart'</span>, <span class='str'>'Next.js'</span>],"},
+    {code:"&nbsp;&nbsp;<span class='prop'>status</span>: <span class='str'>'open_to_work'</span>,"},
+    {code:"}"}
+  ];
+  var twEl = document.getElementById('typewriter');
+
+  function renderStatic(){
+    var html = '';
+    lines.forEach(function(l, i){
+      html += '<div class="code-line"><span class="ln">'+(i+1)+'</span><span class="code">'+l.code+'</span></div>';
+    });
+    html += '<div class="code-line"><span class="ln">'+(lines.length+1)+'</span><span class="code"><span class="caret"></span></span></div>';
+    twEl.innerHTML = html;
+  }
+
+  if (reduceMotion){
+    renderStatic();
+  } else {
+    var lineIndex = 0;
+    function typeNextLine(){
+      if (lineIndex >= lines.length){
+        var caretRow = document.createElement('div');
+        caretRow.className = 'code-line';
+        caretRow.innerHTML = '<span class="ln">'+(lines.length+1)+'</span><span class="code"><span class="caret"></span></span>';
+        twEl.appendChild(caretRow);
+        return;
+      }
+      var row = document.createElement('div');
+      row.className = 'code-line';
+      var lnSpan = document.createElement('span');
+      lnSpan.className = 'ln';
+      lnSpan.textContent = (lineIndex+1);
+      var codeSpan = document.createElement('span');
+      codeSpan.className = 'code';
+      row.appendChild(lnSpan);
+      row.appendChild(codeSpan);
+      twEl.appendChild(row);
+
+      var full = lines[lineIndex].code;
+      var plain = full.replace(/<[^>]*>/g,'').replace(/&nbsp;/g,' ');
+      var i = 0;
+      var speed = 14;
+      function typeChar(){
+        i++;
+        var slice = plain.slice(0,i);
+        codeSpan.textContent = slice;
+        if (i < plain.length){
+          setTimeout(typeChar, speed);
+        } else {
+          codeSpan.innerHTML = full;
+          lineIndex++;
+          setTimeout(typeNextLine, 90);
+        }
+      }
+      typeChar();
+    }
+    setTimeout(typeNextLine, 300);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
         }
       });
+    }, {threshold:.15, rootMargin:'0px 0px -60px 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Scrollspy: tabs + rail ---------- */
+  var sections = document.querySelectorAll('.section, .hero');
+  var tabs = document.querySelectorAll('.tab');
+  var railNums = document.querySelectorAll('.rail-num');
+
+  function setActive(id){
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.target === id); });
+    railNums.forEach(function(r){ r.classList.toggle('active', r.dataset.target === id); });
+    var activeTab = document.querySelector('.tab.active');
+    if (activeTab && activeTab.scrollIntoView){
+      activeTab.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+    }
+  }
+
+  if ('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          setActive(entry.target.id);
+        }
+      });
+    }, {threshold:.4, rootMargin:'-52px 0px -40% 0px'});
+    sections.forEach(function(s){ if (s.id) spy.observe(s); });
+  }
+
+  /* ---------- Project card cursor glow ---------- */
+  document.querySelectorAll('.project-card').forEach(function(card){
+    card.addEventListener('mousemove', function(e){
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX-rect.left)/rect.width*100)+'%');
+      card.style.setProperty('--my', ((e.clientY-rect.top)/rect.height*100)+'%');
     });
-  </script>
+  });
+
+  /* ---------- Copy email on click (fallback keeps mailto working) ---------- */
+});
+</script>
 </body>
 </html>
